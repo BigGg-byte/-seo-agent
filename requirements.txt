@@ -1,0 +1,15 @@
+# fondamentali
+pandas>=2.0
+requests>=2.31
+python-dotenv>=1.0
+
+# NLP & ML
+sentence-transformers>=5.0
+torch>=2.2          # dipendenza principale di sentence-transformers
+scikit-learn>=1.7
+hdbscan>=0.8.40
+numpy>=1.26         # richiesto da scikit-learn/hdbscan
+scipy>=1.11         # richiesto da hdbscan
+
+# DataForSEO
+dataforseo-client>=1.0
