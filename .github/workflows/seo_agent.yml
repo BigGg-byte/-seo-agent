@@ -2,16 +2,30 @@ name: Monthly SEO Agent
 
 on:
   schedule:
-    - cron: '0 5 1 * *'      # 05:00 UTC → 07:00 italiane, 1° di ogni mese
-  workflow_dispatch:          # pulsante “Run workflow” manuale
+    - cron: '0 5 1 * *'        # 07:00 italiane, 1° del mese
+  workflow_dispatch:
 
 jobs:
   run-agent:
     runs-on: ubuntu-latest
+    timeout-minutes: 30        # chiude dopo 30 minuti se qualcosa si blocca
+
     steps:
       - uses: actions/checkout@v4
-      - run: pip install -r requirements.txt
-      - run: python seo_keyword_agent.py
+
+      - name: Cache Python packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run SEO agent
+        run: python seo_keyword_agent.py
         env:
           WP_USER:     ${{ secrets.WP_USER }}
           WP_APP_PWD:  ${{ secrets.WP_APP_PWD }}
