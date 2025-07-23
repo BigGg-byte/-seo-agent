@@ -1,8 +1,0 @@
-pandas
-requests
-python-dotenv
-sentence-transformers
-hdbscan
-scikit-learn
-dataforseo-client
-python-dotenv
