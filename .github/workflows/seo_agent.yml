@@ -1,0 +1,19 @@
+name: Monthly SEO Agent
+
+on:
+  schedule:
+    - cron: '0 5 1 * *'      # 05:00 UTC → 07:00 italiane, 1° di ogni mese
+  workflow_dispatch:          # pulsante “Run workflow” manuale
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -r requirements.txt
+      - run: python seo_keyword_agent.py
+        env:
+          WP_USER:     ${{ secrets.WP_USER }}
+          WP_APP_PWD:  ${{ secrets.WP_APP_PWD }}
+          DFS_LOGIN:   ${{ secrets.DFS_LOGIN }}
+          DFS_PWD:     ${{ secrets.DFS_PWD }}
