@@ -1,8 +1,0 @@
-pandas
-requests
-python-dotenv
-sentence-transformers
-hdbscan
-scikit-learn
-dataforseo_api3         # wrapper leggero (o usa requests raw) :contentReference[oaicite:2]{index=2}
-python-dotenv
