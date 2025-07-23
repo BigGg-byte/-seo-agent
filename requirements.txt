@@ -1,6 +1,0 @@
-pandas
-requests
-python-dotenv
-sentence-transformers
-hdbscan
-scikit-learn
